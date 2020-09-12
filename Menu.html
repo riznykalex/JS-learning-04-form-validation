@@ -1,0 +1,128 @@
+<head>
+    <title>Menu from JSON</title>
+</head>
+<style>
+
+    .primary-navigation {
+        width: 150px;
+
+     }
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        background-color: #eee;
+        color: black;
+        display: block;
+        padding: 12px;
+        text-decoration: none;
+        font-family: "Roboto Thin";
+    }
+
+    a:hover {
+        background-color: #ccc;
+    }
+
+
+    a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+</style>
+
+
+
+
+<body>
+<nav role="navigation" id="menuItems" class="primary-navigation">
+
+
+</nav>
+
+</body>
+
+<script type="text/javascript">
+    let menuItems =
+        `[
+       {  "id":  "redLink", "text": "Red", "link": "#",
+          "sub": [
+                { "id":  "lightRedLink", "text": "Ligth Red", "link": "#", "sub": [
+                            { "id":  "pink", "text": "Pink", "link": "#", "sub": null},
+                            { "id":  "lightPink", "text": "lightPink", "link": "#", "sub": null}
+                ]
+                },
+                { "id":  "originalRedLink", "text": "Red", "link": "#", "sub": null},
+                { "id":  "darkRedLink", "text": "Dark Red", "link": "#", "sub": null}
+          ]
+        },
+        { "id":  "blueLink", "text": "Blue", "link": "#",
+            "sub": [
+                { "id":  "lightBlueLink", "text": "Ligth Blue", "link": "#", "sub": null},
+                { "id":  "originalBlueLink", "text": "Blue", "link": "#", "sub": null},
+                { "id":  "darkBlueLink", "text": "Dark Blue", "link": "#", "sub": null}
+          ]
+       },
+        { "id":  "greenLink", "text": "Green", "link": "#",
+            "sub": [
+                { "id":  "lightGreenLink", "text": "Ligth Green", "link": "#", "sub": null},
+                { "id":  "originalGreenLink", "text": "Green", "link": "#", "sub": null},
+                { "id":  "darkGreenLink", "text": "Dark Green", "link": "#", "sub": null}
+          ]
+       },
+        { "id":  "yellowLink", "text": "Yellow", "link": "#",
+          "sub": [
+                { "id":  "lightYellowLink", "text": "Ligth Yellow", "link": "#", "sub": null},
+                { "id":  "originalYellowLink", "text": "Yellow", "link": "#", "sub": null},
+                { "id":  "darkYellowLink", "text": "Dark Yellow", "link": "#", "sub": null}
+          ]
+       },
+        { "id":  "blackLink", "text": "Black", "link": "#",
+          "sub": [
+                { "id":  "grayLink", "text": "Gray", "link": "#", "sub": null},
+                { "id":  "originalBlackLink", "text": "Black", "link": "#", "sub": null},
+                { "id":  "blackestBlackLink", "text": "blackest Black", "link": "#", "sub": null}
+          ]
+       }
+    ]`
+
+    let items = JSON.parse(menuItems);
+    //console.log(items);
+
+    function addMenu(){
+
+        let ul = document.createElement('ul');
+        ul.setAttribute('id','menu');
+        document.getElementById('menuItems').appendChild(ul);
+
+
+        items.forEach(element => createNew(element));
+
+     function createNew(element){
+         let  li = document.createElement('li');
+         li.setAttribute('id',element.id);
+         li.setAttribute('style', "inline-block");
+         let anchor = document.createElement('a');
+         anchor.setAttribute('href',element.link);
+         anchor.textContent = element.text;
+         li.appendChild(anchor);
+         ul.appendChild(li);
+
+       /*  if (element.sub != null) {
+
+             li.appendChild(ul)
+         }*/
+
+
+     }
+
+    }
+
+    window.onload = addMenu();
+
+</script>
+
+
+</html>
