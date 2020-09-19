@@ -49,33 +49,57 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('input[name="fname"]').unbind().blur( function(){
+            $('input[name="fname"]').blur( function(){
                 if($(this).val() != ''){
-                     $(this).removeClass('form-error').addClass('req');}
+                     $(this).parent().removeClass('form-error').addClass('req');}
                 else{
-                    alert("Gib deinen Namen ein!");
-                    $(this).removeClass('req').addClass('form-error');};
-            });
-            $('input[name="email"]').unbind().blur( function(){
-                if ($(this).val() != '' && $(this).val().indexOf('@')>0){
-                    $(this).removeClass('form-error').addClass('req');}
-                else{
-                    alert("Email eingeben!");
-                    $(this).removeClass('req').addClass('form-error');};
+                    $(this).parent().removeClass('req').addClass('form-error');};
             });
 
-            if ($('select[name=diagnosed]').val() != ''){
-                    $(this).removeClass('form-error').addClass('req');}
-            else{
-                    $(this).removeClass('req').addClass('form-error');};
+            $('input[name="email"]').blur( function(){
+                if (validateEmail($(this).val())){
+                    $(this).parent().removeClass('form-error').addClass('req');}
+                else{
+                    $(this).parent().removeClass('req').addClass('form-error');};
+            });
+
+        });
 
 
-      });
+        function checkInputs() {
+            var errors = 0;
 
+            if ($('input[name="fname"]').val() != '') {
+                $('input[name="fname"]').parent().removeClass('form-error').addClass('req');
+            } else {
+                $('input[name="fname"]').parent().removeClass('req').addClass('form-error');
+                errors++;
+            }
+            if (validateEmail($('input[name="email"]').val())) {
+                $('input[name="email"]').parent().removeClass('form-error').addClass('req');
+            } else {
+                $('input[name="email"]').parent().removeClass('req').addClass('form-error');
+                errors++;
+            }
+            $('select').each(function () {
 
-
-
-
+                if ($(this).val() != '') {
+                    //alert("ok");
+                    $(this).parent().removeClass('form-error').addClass('req');
+                } else {
+                    //alert("error");
+                    $(this).parent().removeClass('req').addClass('form-error');
+                    errors ++;
+                }
+            });
+            if(!errors){
+                call();
+            }
+        }
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
   </script>
 
 
@@ -229,88 +253,105 @@
 
             <div class="contact-form">
                 <div id="results"></div>
-                <form action="javascript:void(null);" method="post" id="contact-form"<!-- onsubmit="call()"-->>
-                    <label>Titel</label>
-                    <select name="title">
-                        <option value="">Bitte wählen</option>
-                        <option value="Hr.">Hr.</option>
-                        <option value="Fr.">Fr.</option>
-                        <option value="Frl.">Frl.</option>
-                        <option value="Dr.">Dr.</option>
-                    </select>
-
-                    <div class="req">
-                        <label>Vorname*</label>
-                        <input type="text" name="fname" class="text" maxlength="255" value=""/>
-                        <span class="form-error"></span>
-                    </div>
-
-                    <label>Nachname</label>
-                    <input type="text" name="lname" class="text" maxlength="255" value=""/>
-
-                    <label>Straße</label>
-                    <input type="text" name="address" class="text" maxlength="255" value=""/>
-
-                    <label>Stadt</label>
-                    <input type="text" name="city" class="text" maxlength="255" value=""/>
-
-
-                    <label>Land</label>
-                    <input type="text" name="country" class="text" maxlength="255" value=""/>
-
-                    <label>Postleitzahl</label>
-                    <input type="text" name="zip" class="text" maxlength="30" value=""/>
-
-                    <div class="req">
-                        <label>E-Mail*</label>
-                        <input type="text" name="email" class="text" maxlength="50" value=""/>
-                        <span class="form-error"></span>
-                    </div>
-
-                    <label>Telefon</label>
-                    <input type="text" name="phone" class="text" maxlength="20" value=""/>
-
-                    <div class="req">
-                        <label>Wurde bei Ihnen lumbale Stenose und/oder Spondylolisthese diagnostiziert?*</label>
-                        <select name="diagnosed">
-                            <option value="">Wählen Sie</option>
-                            <option value="Yes">Ja</option>
-                            <option value="No">Nein</option>
+                <form action="javascript:void(null);" method="post" id="contact-form"  onsubmit="checkInputs()">
+                    <div class="row">
+                        <label>Titel</label>
+                        <select name="title">
+                            <option value="">Bitte wählen</option>
+                            <option value="Hr.">Hr.</option>
+                            <option value="Fr.">Fr.</option>
+                            <option value="Frl.">Frl.</option>
+                            <option value="Dr.">Dr.</option>
                         </select>
-                        <span class="form-error"></span>
                     </div>
 
                     <div class="req">
-                        <label>Hat Ihnen Ihr Arzt aufgrund der Diagnose gesagt, Sie seien ein Kandidat für
-                            Lendenwirbelsäulenversteifung?*</label>
-                        <select name="candidate">
-                            <option value="">Wählen Sie</option>
-                            <option value="Yes">Ja</option>
-                            <option value="No">Nein</option>
-                        </select>
-                        <span class="form-error"></span>
+                        <div class="row">
+                            <label>Vorname*</label>
+                            <input type="text" name="fname" class="text" maxlength="255" value=""/>
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Nachname</label>
+                        <input type="text" name="lname" class="text" maxlength="255" value=""/>
+                    </div>
+                    <div class="row">
+                        <label>Straße</label>
+                        <input type="text" name="address" class="text" maxlength="255" value=""/>
+                    </div>
+                    <div class="row">
+                        <label>Stadt</label>
+                        <input type="text" name="city" class="text" maxlength="255" value=""/>
+                    </div>
+                    <div class="row">
+                        <label>Land</label>
+                        <input type="text" name="country" class="text" maxlength="255" value=""/>
+                    </div>
+                    <div class="row">
+                        <label>Postleitzahl</label>
+                        <input type="text" name="zip" class="text" maxlength="30" value=""/>
+                    </div>
+                    <div class="req">
+                        <div class="row">
+                            <label>E-Mail*</label>
+                            <input type="text" name="email" class="text" maxlength="50" value=""/>
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Telefon</label>
+                        <input type="text" name="phone" class="text" maxlength="20" value=""/>
                     </div>
 
                     <div class="req">
-                        <label>Wie haben Sie von uns erfahren?*</label>
-                        <select name="about">
-                            <option value="">Wählen Sie</option>
-                            <option value="Arzt">Arzt</option>
-                            <option value="Internetsuche">Internetsuche</option>
-                            <option value="Googlesuche">Googlesuche</option>
-                            <option value="Yahoosuche">Yahoosuche</option>
-                            <option value="YouTube">YouTube</option>
-                            <option value="Andere Webseiten">Andere Webseiten</option>
-                            <option value="Medizinische Zeitschriften">Medizinische Zeitschriften</option>
-                            <option value="Zeitungsartikel">Zeitungsartikel</option>
-                            <option value="Freunde oder Verwandte">Freunde oder Verwandte</option>
-                            <option value="Fernsehen">Fernsehen</option>
-                        </select>
-                        <span class="form-error"></span>
+                        <div class="row">
+                            <label>Wurde bei Ihnen lumbale Stenose und/oder Spondylolisthese diagnostiziert?*</label>
+                            <select name="diagnosed">
+                                <option value="">Wählen Sie</option>
+                                <option value="Yes">Ja</option>
+                                <option value="No">Nein</option>
+                            </select>
+                            <span class="form-error"></span>
+                        </div>
                     </div>
 
-                    <label>Wie können wir Ihnen weiterhelfen?</label>
-                    <textarea name="help" rows="5" cols="10"></textarea>
+                    <div class="req">
+                        <div class="row">
+                            <label>Hat Ihnen Ihr Arzt aufgrund der Diagnose gesagt, Sie seien ein Kandidat für
+                                Lendenwirbelsäulenversteifung?*</label>
+                            <select name="candidate">
+                                <option value="">Wählen Sie</option>
+                                <option value="Yes">Ja</option>
+                                <option value="No">Nein</option>
+                            </select>
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="req">
+                        <div class="row">
+                            <label>Wie haben Sie von uns erfahren?*</label>
+                            <select name="about">
+                                <option value="">Wählen Sie</option>
+                                <option value="Arzt">Arzt</option>
+                                <option value="Internetsuche">Internetsuche</option>
+                                <option value="Googlesuche">Googlesuche</option>
+                                <option value="Yahoosuche">Yahoosuche</option>
+                                <option value="YouTube">YouTube</option>
+                                <option value="Andere Webseiten">Andere Webseiten</option>
+                                <option value="Medizinische Zeitschriften">Medizinische Zeitschriften</option>
+                                <option value="Zeitungsartikel">Zeitungsartikel</option>
+                                <option value="Freunde oder Verwandte">Freunde oder Verwandte</option>
+                                <option value="Fernsehen">Fernsehen</option>
+                            </select>
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>Wie können wir Ihnen weiterhelfen?</label>
+                        <textarea name="help" rows="5" cols="10"></textarea>
+                    </div>
 
                     <div class="clr"></div>
 
