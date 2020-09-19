@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Kontaktseite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Language" content="en"/>
+    <meta name="robots" content="all,follow"/>
+    <meta content="telephone=no" name="format-detection">
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://besseralswirbelfusion.de/tmpl/ps/css/style.css" type="text/css"
+          media="screen, projection"/>
+    <script type="text/javascript" src="https://besseralswirbelfusion.de/tmpl/ps/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://besseralswirbelfusion.de/tmpl/ps/js/jquery.corner.js"></script>
+    <script type="text/javascript" src="https://besseralswirbelfusion.de/tmpl/ps/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="https://besseralswirbelfusion.de/tmpl/ps/js/general.js"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-35284941-8']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www/') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type="text/javascript">
+        function call() {
+            var values = $('#contact-form').serialize();
+            $.ajax({
+                type: 'POST',
+                url: 'res.php',
+                data: values,
+                success: function (data) {
+                    $('#contact-form').css({opacity: 0});
+                    $('.success-message').fadeIn().attr("aria-hidden", "false");
+                },
+                error: function (xhr, str) {
+                    $('#results').html('Error');
+                }
+            });
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('input[name="fname"]').unbind().blur( function(){
+                if($(this).val() != ''){
+                     $(this).removeClass('form-error').addClass('req');}
+                else{
+                    alert("Gib deinen Namen ein!");
+                    $(this).removeClass('req').addClass('form-error');};
+            });
+            $('input[name="email"]').unbind().blur( function(){
+                if ($(this).val() != '' && $(this).val().indexOf('@')>0){
+                    $(this).removeClass('form-error').addClass('req');}
+                else{
+                    alert("Email eingeben!");
+                    $(this).removeClass('req').addClass('form-error');};
+            });
+
+            if ($('select[name=diagnosed]').val() != ''){
+                    $(this).removeClass('form-error').addClass('req');}
+            else{
+                    $(this).removeClass('req').addClass('form-error');};
+
+
+      });
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <div id="top"></div>
+        <div id="logo">
+            <a href="https://besseralswirbelfusion.de/"></a>
+            <p>Sie verdienen etwas Besseres<br/> als eine Wirbelfusion</p>
+        </div>
+        <div class="contact_phone">
+            <p class="phone">Für eine persönliche Beratung, <br/>
+                <span>+49 (0)175-5675 147</span><br/>
+                <!--von 8:00 auf 19:00-->
+            </p>
+        </div>
+        <div id="topnav">
+            <a href="https://besseralswirbelfusion.de/kontaktieren-sie-uns.html" class="btn contact">Kontaktseite
+                &raquo;</a>
+        </div>
+        <div class="clr"></div>
+        <div id="tmenu">
+            <ul>
+                <li class="first"><a href="https://besseralswirbelfusion.de/">Startseite</a></li>
+                <li><a href="https://besseralswirbelfusion.de/was-ist-tops.html">Was sind TOPS/ NEXUX?</a>
+                    <ul>
+                        <li class="first"><a
+                                href="https://besseralswirbelfusion.de/was-ist-tops/beschreibung-des-implantats.html">Systembeschreibung</a>
+                        </li>
+                        <li>
+                            <a href="https://besseralswirbelfusion.de/was-ist-tops/funktionsweise.html">Funktionsweise</a>
+                        </li>
+                        <li class="last"><a href="https://besseralswirbelfusion.de/was-ist-tops/nexux.html">Nexux</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="https://besseralswirbelfusion.de/wirbelsaulenerkrankungen.html">Wirbelsäulenerkrankungen und
+                    Behandlung</a>
+                    <ul>
+                        <li><a href="https://besseralswirbelfusion.de/wirbelsaulenerkrankungen/lumbar-laminektomie.html">Lumbale
+                            Laminektomie</a>
+                            <ul>
+                                <li class="first"><a
+                                        href="https://besseralswirbelfusion.de/wirbelsaulenerkrankungen/lumbar-laminektomie/ursachen.html">Ursachen</a>
+                                </li>
+                                <li class="last"><a
+                                        href="https://besseralswirbelfusion.de//wirbelsaulenerkrankungen/lumbar-laminektomie/symptome.html">Symptome</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="https://besseralswirbelfusion.de/spinale-stenose.html">Spinale Stenose</a>
+                            <ul>
+                                <li class="first"><a
+                                        href="https://besseralswirbelfusion.de/spinale-stenose/ursachen.html">Ursachen</a>
+                                </li>
+                                <li class="last"><a
+                                        href="https://besseralswirbelfusion.de/spinale-stenose/symptome.html">Symptome</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="https://besseralswirbelfusion.de/wirbelsaulenerkrankungen/knochensporn.html">
+                            Knochensporn / Facettenarthrose</a></li>
+                        <li>
+                            <a href="https://besseralswirbelfusion.de/wirbelsaulenerkrankungen/ischias-eingeklemmter-nerv.html">Ischias
+                                & eingeklemmter Nerv</a></li>
+                        <li class="last"><a
+                                href="https://besseralswirbelfusion.de/wirbelsaulenerkrankungen/bandscheibenvorfall.html">Bandscheibenvorfall</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="https://besseralswirbelfusion.de/erfahrungsberichte.html">Erfahrungsberichte</a></li>
+                <li><a href="https://besseralswirbelfusion.de/wirbelsaulenoperation-faqs.html">FAQ</a></li>
+                <li><a href="https://besseralswirbelfusion.de/map.html">Finden Sie einen Arzt</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="pre-content">
+            <div id="breadcrumb">
+                <ul class="B_crumbBox">
+                    <li class="B_firstCrumb" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb"><a
+                            class="B_homeCrumb" itemprop="url" rel="Home" href="index.htm"
+                            tppabs="http://besseralswirbelfusion.ch/"><span itemprop="title">Startseite</span></a></li>
+                    /
+                    <li class="B_lastCrumb" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <li itemscope="itemscope" class="B_currentCrumb" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        Kontaktseite
+                    </li>
+                    </li>
+                </ul>
+            </div>
+            <div id="share">
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style ">
+                    <a class="addthis_button_facebook"></a>
+                    <a class="addthis_button_twitter"></a>
+                    <a class="addthis_button_email"></a>
+                    <a class="addthis_button_pinterest_share"></a>
+                    <a class="addthis_button_compact"></a>
+                </div>
+                <script type="text/javascript">var addthis_config = {
+                    "data_track_addressbar": false,
+                    "data_track_clickback": false,
+                    ui_language: "en"
+                }</script>
+                <script type="text/javascript"
+                        src="//s7.addthis.com/js/250/addthis_widget.js#pubid=sbxmal"></script>
+                <!-- AddThis Button END -->
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div id="left-col">
+            <div class="hide">8</div>
+
+            <div id="lmenu">
+                <ul class="nom">
+                    <li class="active"><a
+                            href="http://besseralswirbelfusion.ch/kontaktieren-sie-uns.html">Kontaktseite</a></li>
+                </ul>
+
+            </div>
+
+
+        <div id="brochures">
+            <a href="https://besseralswirbelfusion.de/files/files/TOPS_Brochure.pdf" class="brochure"
+                       target="_blank">Laden Sie die TOPS Broschüre herunter</a>
+			<a href="/files/files/Nexux_Brochure.pdf" class="brochure" target="_blank">Laden Sie die NEXUX Broschüre herunter</a>
+            <ul class="shadow">
+                <li><a href="https://besseralswirbelfusion.de/files/PremiaSpineTOPSflyer.pdf" target="_blank">English</a>
+                </li>
+                <li><a href="https://besseralswirbelfusion.de/files/PremiaSpine_TOPS_Flyer_GermanV2.pdf" target="_blank">Deutsch</a>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        <div id="main-col">
+            <h1>Kontaktieren Sie Premia Spine zu TOPS als Alternative zur Wirbelsäulenversteifung</h1>
+            <p>Kontaktieren Sie uns, um mehr über die TOPS Alternative zur Wirbelsäulenversteifung für moderate bis
+                starke spinale Stenose zu erfahren–</p>
+
+            <div class="contact-form">
+                <div id="results"></div>
+                <form action="javascript:void(null);" method="post" id="contact-form"<!-- onsubmit="call()"-->>
+                    <label>Titel</label>
+                    <select name="title">
+                        <option value="">Bitte wählen</option>
+                        <option value="Hr.">Hr.</option>
+                        <option value="Fr.">Fr.</option>
+                        <option value="Frl.">Frl.</option>
+                        <option value="Dr.">Dr.</option>
+                    </select>
+
+                    <div class="req">
+                        <label>Vorname*</label>
+                        <input type="text" name="fname" class="text" maxlength="255" value=""/>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <label>Nachname</label>
+                    <input type="text" name="lname" class="text" maxlength="255" value=""/>
+
+                    <label>Straße</label>
+                    <input type="text" name="address" class="text" maxlength="255" value=""/>
+
+                    <label>Stadt</label>
+                    <input type="text" name="city" class="text" maxlength="255" value=""/>
+
+
+                    <label>Land</label>
+                    <input type="text" name="country" class="text" maxlength="255" value=""/>
+
+                    <label>Postleitzahl</label>
+                    <input type="text" name="zip" class="text" maxlength="30" value=""/>
+
+                    <div class="req">
+                        <label>E-Mail*</label>
+                        <input type="text" name="email" class="text" maxlength="50" value=""/>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <label>Telefon</label>
+                    <input type="text" name="phone" class="text" maxlength="20" value=""/>
+
+                    <div class="req">
+                        <label>Wurde bei Ihnen lumbale Stenose und/oder Spondylolisthese diagnostiziert?*</label>
+                        <select name="diagnosed">
+                            <option value="">Wählen Sie</option>
+                            <option value="Yes">Ja</option>
+                            <option value="No">Nein</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="req">
+                        <label>Hat Ihnen Ihr Arzt aufgrund der Diagnose gesagt, Sie seien ein Kandidat für
+                            Lendenwirbelsäulenversteifung?*</label>
+                        <select name="candidate">
+                            <option value="">Wählen Sie</option>
+                            <option value="Yes">Ja</option>
+                            <option value="No">Nein</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="req">
+                        <label>Wie haben Sie von uns erfahren?*</label>
+                        <select name="about">
+                            <option value="">Wählen Sie</option>
+                            <option value="Arzt">Arzt</option>
+                            <option value="Internetsuche">Internetsuche</option>
+                            <option value="Googlesuche">Googlesuche</option>
+                            <option value="Yahoosuche">Yahoosuche</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Andere Webseiten">Andere Webseiten</option>
+                            <option value="Medizinische Zeitschriften">Medizinische Zeitschriften</option>
+                            <option value="Zeitungsartikel">Zeitungsartikel</option>
+                            <option value="Freunde oder Verwandte">Freunde oder Verwandte</option>
+                            <option value="Fernsehen">Fernsehen</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <label>Wie können wir Ihnen weiterhelfen?</label>
+                    <textarea name="help" rows="5" cols="10"></textarea>
+
+                    <div class="clr"></div>
+
+                    <div id="dbot_req"><input type="submit" name="submit" class="submit-btn" value="">
+                        <div id="lb_req"></div>
+                        <div class="clr"></div>
+                    </div>
+                </form>
+                <div class="success-message" aria-hidden="true">
+                    <div class="holder">
+                        <h4>Danke für Ihr Interesse!</h4>
+                        <p>Wir werden Sie in Kürze kontaktieren.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clr"></div>
+        <div id="prefooter" class="ht-line">
+            <p>Sie verdienen etwas Besseres als eine Wirbelfusion</p>
+            <a href="http://besseralswirbelfusion.ch/kontaktieren-sie-uns.html" class="btn"><span>Fordern Sie weitere Informationen an</span></a>
+            <div class="clr"></div>
+        </div>
+    </div>
+    <div id="footer">
+        <p class="copy">&copy; 2019 Premia Spine GmbH<br/>Premia Spine Produkte sind in der EU zugelassen.<br/>In the United States, the TOPSTM System is an Investigational Device limited by Federal (USA) law exclusively for use by or on the order of a physician under Clinical Investigation.</p>
+        <p class="contact"><a href="http://besseralswirbelfusion.ch/kontaktieren-sie-uns.html">Kontaktseite
+            &raquo;</a><br/><a href="http://besseralswirbelfusion.ch/datenschutzrichtlinie.html">Impressum/Datenschutzrichtlinie
+            &raquo;</a></p></p>
+    </div>
+</div>
+</body>
+
+</html>
