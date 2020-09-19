@@ -3,10 +3,19 @@
 </head>
 <style>
 
-    .primary-navigation {
+    nav {
         width: 150px;
 
      }
+
+    nav ul ul ul {
+        display: none;
+    }
+
+    nav li:hover > ul{
+        display: block;
+    }
+
 
     li {
         list-style: none;
@@ -18,7 +27,7 @@
         display: block;
         padding: 12px;
         text-decoration: none;
-        font-family: "Roboto Thin";
+        font: 1.4em monospace;
     }
 
     a:hover {
@@ -37,14 +46,18 @@
 
 
 <body>
-<nav role="navigation" id="menuItems" class="primary-navigation">
-
-
+<nav role="navigation" id="menuItems" class="menu">
 </nav>
+
+
 
 </body>
 
+
+
 <script type="text/javascript">
+
+
     let menuItems =
         `[
        {  "id":  "redLink", "text": "Red", "link": "#",
@@ -91,36 +104,39 @@
     let items = JSON.parse(menuItems);
     //console.log(items);
 
-    function addMenu(){
 
-        let ul = document.createElement('ul');
-        ul.setAttribute('id','menu');
-        document.getElementById('menuItems').appendChild(ul);
-
-
-        items.forEach(element => createNew(element));
+    function addMenu(subItems) {
+        subItems.forEach(element =>  createNew(element));
+    }
 
      function createNew(element){
-         let  li = document.createElement('li');
-         li.setAttribute('id',element.id);
-         li.setAttribute('style', "inline-block");
-         let anchor = document.createElement('a');
-         anchor.setAttribute('href',element.link);
-         anchor.textContent = element.text;
-         li.appendChild(anchor);
-         ul.appendChild(li);
 
-       /*  if (element.sub != null) {
+            let ul = document.createElement('ul');
+                ul.setAttribute('id','menu');
+                document.getElementById('menuItems').appendChild(ul);
 
-             li.appendChild(ul)
-         }*/
+            let li = document.createElement('li');
+                li.setAttribute('id',element.id);
 
+
+            let anchor = document.createElement('a');
+                anchor.setAttribute('href',element.link);
+                anchor.textContent = element.text;
+
+                li.appendChild(anchor);
+
+                if (element.sub){
+                    console.log(element.sub);
+                    addMenu(element.sub)};
+
+                ul.appendChild(li);
+
+                return ul;
 
      }
 
-    }
 
-    window.onload = addMenu();
+    window.onload = addMenu(items);
 
 </script>
 
