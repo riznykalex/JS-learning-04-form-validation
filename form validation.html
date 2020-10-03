@@ -53,124 +53,68 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function (){
 
 
             let validators = {};
-
-            /*
-            validators.yes = function (el){
-
-
-            }
-
-            validators[a]()
-*/
-
-
-
             let errors = 0;
 
-            let needValidation = $("[data-check]").toArray();
-
-            needValidation.forEach(element => console.log(element.dataset.check));
-
-            //validators = dataset
-
-            //console.log(needValidation);
-
-
-
-
-
-
-            $("[data-check|='yes']").blur( function(){
-                if($(this).val() != ''){
-                    $(this).parent().removeClass('form-error').addClass('req');}
+            validators.yes = function (el){
+                if($(el).val() != ''){
+                    $(el).parent().removeClass('form-error').addClass('req');}
                 else{
-                    $(this).parent().removeClass('req').addClass('form-error');
+                    $(el).parent().removeClass('req').addClass('form-error');
                     errors++;
-                };
-            });
+                }
+            };
 
-            $("[data-check|='mail']").blur( function(){
-                if (validateEmail($(this).val())){
-                    $(this).parent().removeClass('form-error').addClass('req');}
+            validators.select = function (el){
+                if($(el).val() != ''){
+                    $(el).parent().removeClass('form-error').addClass('req');}
                 else{
-                    $(this).parent().removeClass('req').addClass('form-error');
+                    $(el).parent().removeClass('req').addClass('form-error');
                     errors++;
+                }
+            };
+
+            validators.mail = function (el){
+                    if (validateEmail($(el).val())){
+                        $(el).parent().removeClass('form-error').addClass('req');}
+                    else{
+                        $(el).parent().removeClass('req').addClass('form-error');
+                        errors++;
+                    }
                 };
-            });
 
-
-
-            /*
-            $('select').each(function () {
-
-                if ($(this).val() != '') {
-                    //alert("ok");
-                    $(this).parent().removeClass('form-error').addClass('req');
-                } else {
-                    //alert("error");
-                    $(this).parent().removeClass('req').addClass('form-error');
-                    errors ++;
+            function checkInputs() {
+                errors = 0;
+                let b = $("[data-check]");
+                b.each(function (index) {
+                    validators[($(this).data().check)](this);
+                    console.log(errors);
+                });
+                if(!errors){
+                    call();
                 }
-            });
 
-             */
-
-
-
-            if(!errors){
-                call();
-            }
-        });
-
-/*
-        function checkInputs() {
-            var errors = 0;
-
-
-
-
-            if ($('input[name="fname"]').val() != '') {
-                $('input[name="fname"]').parent().removeClass('form-error').addClass('req');
-            } else {
-                $('input[name="fname"]').parent().removeClass('req').addClass('form-error');
-
-
-
-
-                errors++;
-            }
-            if (validateEmail($('input[name="email"]').val())) {
-                $('input[name="email"]').parent().removeClass('form-error').addClass('req');
-            } else {
-                $('input[name="email"]').parent().removeClass('req').addClass('form-error');
-                errors++;
             }
 
-            $('select').each(function () {
+            $(document).ready(function (){
 
-                if ($(this).val() != '') {
-                    //alert("ok");
-                    $(this).parent().removeClass('form-error').addClass('req');
-                } else {
-                    //alert("error");
-                    $(this).parent().removeClass('req').addClass('form-error');
-                    errors ++;
+            $("[data-check]").change( function () {
+                validators[($(this).data().check)](this)
                 }
+            );
             });
-            if(!errors){
-                call();
-            }
-        }
 
- */
-        function validateEmail(email) {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(String(email).toLowerCase());
-        }
+            function validateEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+
+
+
+
     </script>
 
 
@@ -377,7 +321,7 @@
                     <div class="req">
                         <div class="row">
                             <label>Wurde bei Ihnen lumbale Stenose und/oder Spondylolisthese diagnostiziert?*</label>
-                            <select name="diagnosed" data-check="yes">
+                            <select name="diagnosed" data-check="select">
                                 <option value="">Wählen Sie</option>
                                 <option value="Yes">Ja</option>
                                 <option value="No">Nein</option>
@@ -390,7 +334,7 @@
                         <div class="row">
                             <label>Hat Ihnen Ihr Arzt aufgrund der Diagnose gesagt, Sie seien ein Kandidat für
                                 Lendenwirbelsäulenversteifung?*</label>
-                            <select name="candidate" data-check="yes">
+                            <select name="candidate" data-check="select">
                                 <option value="">Wählen Sie</option>
                                 <option value="Yes">Ja</option>
                                 <option value="No">Nein</option>
@@ -402,7 +346,7 @@
                     <div class="req">
                         <div class="row">
                             <label>Wie haben Sie von uns erfahren?*</label>
-                            <select name="about" data-check="yes">
+                            <select name="about" data-check="select">
                                 <option value="">Wählen Sie</option>
                                 <option value="Arzt">Arzt</option>
                                 <option value="Internetsuche">Internetsuche</option>
