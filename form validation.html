@@ -87,6 +87,7 @@
 
             function checkInputs() {
                 errors = 0;
+                console.log(this)
                 let b = $("[data-check]");
                 b.each(function (index) {
                     validators[($(this).data().check)](this);
@@ -98,18 +99,25 @@
 
             }
 
-            $(document).ready(function (){
+            $(document).ready(function () {
 
-            $("[data-check]").change( function () {
-                validators[($(this).data().check)](this)
-                }
-            );
-            });
+                $("[data-check]").change(function () {
+                    validators[($(this).data().check)](this)
+                })
+
+                $("[data-check]").blur(function () {
+                    validators[($(this).data().check)](this)
+                })
+
+                $("[data-form]").submit(checkInputs)
+
+            })
+
 
             function validateEmail(email) {
                 const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(email).toLowerCase());
-            }
+            };
 
 
 
@@ -267,7 +275,7 @@
 
             <div class="contact-form">
                 <div id="results"></div>
-                <form action="javascript:void(null);" method="post" id="contact-form"  onsubmit="checkInputs()">
+                <form action="javascript:void(null);" method="post" id="contact-form" data-form="form">
                     <div class="row">
                         <label>Titel</label>
                         <select name="title">
