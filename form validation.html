@@ -54,40 +54,75 @@
     <script type="text/javascript">
 
 
-
             let validators = {};
             let errors = 0;
+            let errorCode = '';
+
 
             validators.yes = function (el){
-                if($(el).val() != ''){
-                    $(el).parent().removeClass('form-error').addClass('req');}
+                if($(el).val() != '') {
+                    $(el).parent().removeClass('form-error').addClass('req');
+                    $(el).attr({
+                        "data-error" : ""
+                    });
+                    $(el).parent().find('span').empty();
+
+                    ;
+                }
                 else{
                     $(el).parent().removeClass('req').addClass('form-error');
+                    $(el).attr({
+                        "data-error" : "Enter your name."
+                    })
                     errors++;
                 }
+                errorCode = $(el).attr("data-error");
+                $(el).parent().find('span').css( "color", "red" );
+                $(el).parent().find('span').text(errorCode);
             };
+
 
             validators.select = function (el){
                 if($(el).val() != ''){
-                    $(el).parent().removeClass('form-error').addClass('req');}
+                    $(el).parent().removeClass('form-error').addClass('req');
+                    $(el).attr({
+                        "data-error" : ""
+                    });
+                }
                 else{
                     $(el).parent().removeClass('req').addClass('form-error');
+                    $(el).attr({
+                        "data-error" : "Select option."
+                    });
                     errors++;
                 }
+                errorCode = $(el).attr("data-error");
+                $(el).parent().find('span').css( "color", "red" );
+                $(el).parent().find('span').text(errorCode);
             };
 
             validators.mail = function (el){
                     if (validateEmail($(el).val())){
-                        $(el).parent().removeClass('form-error').addClass('req');}
+                        $(el).parent().removeClass('form-error').addClass('req');
+                        $(el).attr({
+                            "data-error" : ""
+                        });
+                    }
                     else{
                         $(el).parent().removeClass('req').addClass('form-error');
+                        $(el).attr({
+                            "data-error" : "Enter correct e-mail address."
+                        });
                         errors++;
                     }
+                errorCode = $(el).attr("data-error");
+                $(el).parent().find('span').css( "color", "red" );
+                $(el).parent().find('span').text(errorCode);
                 };
 
             function checkInputs() {
                 errors = 0;
-                console.log(this)
+
                 let b = $("[data-check]");
                 b.each(function (index) {
                     validators[($(this).data().check)](this);
@@ -290,7 +325,7 @@
                     <div class="req">
                         <div class="row">
                             <label>Vorname*</label>
-                            <input type="text" name="fname" class="text" maxlength="255" value="" data-check="yes"/>
+                            <input type="text" name="fname" class="text" maxlength="255" value="" data-check="yes" data-error=""/>
                             <span class="form-error"></span>
                         </div>
                     </div>
@@ -317,7 +352,7 @@
                     <div class="req">
                         <div class="row">
                             <label>E-Mail*</label>
-                            <input type="text" name="email" class="text" maxlength="50" value="" data-check="mail"/>
+                            <input type="text" name="email" class="text" maxlength="50" value="" data-check="mail" data-error=""/>
                             <span class="form-error"></span>
                         </div>
                     </div>
@@ -329,7 +364,7 @@
                     <div class="req">
                         <div class="row">
                             <label>Wurde bei Ihnen lumbale Stenose und/oder Spondylolisthese diagnostiziert?*</label>
-                            <select name="diagnosed" data-check="select">
+                            <select name="diagnosed" data-check="select" data-error="">
                                 <option value="">Wählen Sie</option>
                                 <option value="Yes">Ja</option>
                                 <option value="No">Nein</option>
@@ -342,7 +377,7 @@
                         <div class="row">
                             <label>Hat Ihnen Ihr Arzt aufgrund der Diagnose gesagt, Sie seien ein Kandidat für
                                 Lendenwirbelsäulenversteifung?*</label>
-                            <select name="candidate" data-check="select">
+                            <select name="candidate" data-check="select" data-error="">
                                 <option value="">Wählen Sie</option>
                                 <option value="Yes">Ja</option>
                                 <option value="No">Nein</option>
@@ -354,7 +389,7 @@
                     <div class="req">
                         <div class="row">
                             <label>Wie haben Sie von uns erfahren?*</label>
-                            <select name="about" data-check="select">
+                            <select name="about" data-check="select" data-error="">
                                 <option value="">Wählen Sie</option>
                                 <option value="Arzt">Arzt</option>
                                 <option value="Internetsuche">Internetsuche</option>
