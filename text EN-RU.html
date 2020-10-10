@@ -4,11 +4,97 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>title</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>Multiligual selection</title>
+    <style>
+        h3{
+            background: #ED1C24;
+            color: white;
+            min-height: 80px;
+            font: 60px Roboto, sans-serif;
+            white-space: nowrap;
+            padding-left: 20px;
+            position: relative;
+            margin: 0;
+
+        }
+        p {
+            font-family: sans-serif;
+            font-weight: bold;
+
+        }
+        .cyr{
+            color: purple;
+        }
+        .lat{
+            color: green;
+        }
+        .gre{
+            color: red;
+        }
+        .heb{
+            color: blue;
+        }
+
+    </style>
+    <script type="text/javascript" src="https://besseralswirbelfusion.de/tmpl/ps/js/jquery-1.7.2.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            let s='Облонских';
+            console.log(isCyrrilicCharacters(s))
+
+            getTextNodes()
+        });
+
+        //$x("/html/body/div/p/text()")[5]
+
+
+
+
+
+        function isCyrrilicCharacters(s) {
+            return (/[\u0400-\u04FF]/.test(s));
+        };
+
+        function isLatinCharacters(s) {
+            return (/[\u0000-\u007F]/.test(s));
+        };
+
+        function isGreekCharacters(s) {
+            return (/[\u0370-\u03FF]/.test(s));
+        };
+
+        function isHebrewCharacters(s) {
+            return (/[\u0590-\u05FF]/.test(s));
+        };
+
+
+
+        //http://www.regular-expressions.info/unicode.html
+
+
+
+
+        function getTextNodes() {
+            selectedElement = $("p").contents();
+
+            textNodes = selectedElement.filter(function ()
+            {
+                return this.nodeType === 3;
+            });
+
+            console.log(textNodes);
+        }
+
+
+
+    </script>
+
+
+
+
 </head>
-<body>
+
 <!-- page content -->
 <div>
     <h3>
@@ -16,7 +102,7 @@
     </h3>
 </div>
 
-
+<!----Russian + English------>
 <div>
 
 <p>ALL HAPPY FAMILIES resemble one another, but each unhappy family is unhappy in its own way.</p>
@@ -31,6 +117,31 @@
 
 </div>
 
+<!----Greek + Hebrew------>
+<div>
+    <p>פרק 1 כיצד הובא קנדיד בטירה מפוארת וכיצד הוא מונע משם</p>
+    <p>Ζούσε στη Βεστφαλία, στον πύργο του κυρίου βαρώνου Τούντερ-τεν- τρονκ, ένας νέος, που η φύση τούχε δώσει το μαλακώτερο χαρακτήρα.</p>
+    <p>פניו היו המדד האמיתי של מוחו.</p>
+    <p>היה לו שיפוט מוצק שהצטרף לפשטות הכי לא מושפעת; ומכאן, אני מניח, היה שמו של קנדיד.</p>
+    <p>Οι παλιοί υπηρέτες του σπιτιού είχαν την υποψία, πως ήτανε γυιός της αδελφής του κυρίου βαρώνου κ' ενός τιμίου ευπατρίδη από τα περίχωρα, που η δεσποινίς αυτή δε δέχτηκε ποτές να τον παντρευτή, γιατί, δε μπορούσε να δείξει περισσότερες από εβδομήντα μια γεννιές, ενώ το υπόλοιπο του γεννεαλογικού του δένδρου χανότανε μέσα στο αίσχος του χρόνου.</p>
+    <p>הברון היה אחד הלורדים החזקים ביותר בווסטפליה, שכן לטירה שלו לא היה רק שער, אלא אפילו חלונות, והאולם הגדול שלו היה תלוי בשטיח.</p>
+    <p>Όλα τα φυλακόσκυλλά τους τα μεταχειριζότανε σε ώρα ανάγκης, για κυνήγι. Οι σταυλίτες του ήσαν και κυνηγοί του.</p>
+    <p>הוא כונה על ידי כל אנשיו "אדוני", והוא מעולם לא סיפר סיפור אבל כולם צחקו עליו.</p>
+</div>
 
+<div>
+    <p class="cyr">
+        Cyrrilic
+    </p>
+    <p class="lat">
+        Latin
+    </p>
+    <p class="gre">
+        Greek
+    </p>
+    <p class="heb">
+        Hebrew
+    </p>
+</div>
 </body>
 </html>
