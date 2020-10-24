@@ -53,7 +53,7 @@
         $(document).ready(function(){
 
             checkLang(engRegEx, "lat");
-            checkLang(cyrRegEx, "cyr");
+           // checkLang(cyrRegEx, "cyr");
            // checkLang(greRegEx, "gre");
            // checkLang(hebRegEx, "heb");
 
@@ -70,6 +70,8 @@
                textNodes.each (function (){
 
                    let newSpan = document.createElement("span");
+                   let newText = document.createElement("p");
+
                    newSpan.classList = className;
 
                    result = languageConst.exec(this.textContent); // результат выборки по  шаблону
@@ -80,12 +82,16 @@
                   if (result && result[0].length <= this.textContent.length){
 
                       let position = this.textContent.search(languageConst);
-                      this.splitText(position);
+                      console.log(position);
 
-                      console.log(this.textContent);
+                      if (position > 0) {
+                          this.splitText(position);
+                          newText.appendChild = this.parentElement.firstChild;
+                          console.log(newNode);
+                      }
 
-                       let newNode = newSpan;
-                       this.parentElement.appendChild(newNode);
+                  newText.appendChild(newSpan);
+                  this.parentElement.appendChild(newNode);
 
 
                    };
@@ -97,11 +103,8 @@
     </script>
 
 
-
-
 </head>
 
-<!-- page content -->
 <div>
     <h3>
         Example
