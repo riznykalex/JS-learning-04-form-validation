@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Multiligual selection</title>
+    <style>
+        body{
+            background: #e9e9ea;
+        }
+        h3{
+            background: #944042;
+            color: white;
+            min-height: 60px;
+            font: 40px Roboto, sans-serif;
+            white-space: nowrap;
+            padding-left: 20px;
+            position: relative;
+            margin: 0;
+
+        }
+        p {
+            font-family: sans-serif;
+            font-weight: bold;
+
+        }
+        .cyr{
+            color: #e317e3;
+        }
+        .lat{
+            color: #29e229;
+        }
+        .gre{
+            color: red;
+        }
+        .heb{
+            color: blue;
+        }
+
+    </style>
+    <script type="text/javascript" src="https://besseralswirbelfusion.de/tmpl/ps/js/jquery-1.7.2.min.js"></script>
+    <script>
+
+
+        const engRegEx = /[a-zA-Z]+[a-zA-Z\s,.:;?!-'–-]*/gm;
+        const cyrRegEx = /[\u0400-\u04FF]+[[\u0400-\u04FF\s:;,.?!-'–-]*/gm
+        const greRegEx = /[\u0370-\u03FF]+[[\u0370-\u03FF\s:;,.?!-–-]*/gm
+        const hebRegEx = /[\u0590-\u05FF]+[\u0590-\u05FF]*/gm  /// >????
+        let result = "";
+
+
+        $(document).ready(function(){
+
+            checkLang(engRegEx, "lat");
+           // checkLang(cyrRegEx, "cyr");
+           // checkLang(greRegEx, "gre");
+           // checkLang(hebRegEx, "heb");
+
+        });
+
+        function checkLang(languageConst, className){
+
+               selectedElement = $('p').contents();
+
+               textNodes = selectedElement.filter(function (){
+                   return this.nodeType === 3;
+               });
+
+               textNodes.each (function (){
+
+                   let newSpan = document.createElement("span");
+                   let newText = document.createElement("p");
+
+                   newSpan.classList = className;
+
+                   result = languageConst.exec(this.textContent); // результат выборки по  шаблону
+
+                   newSpan.innerText = result;
+
+/*
+
+                   textNodes[1].textContent.match(engRegEx)[0]
+                   textNodes[3].textContent.split(engRegEx)[0]
+                   textNodes[3].textContent.split(engRegEx)[1]
+                   
+*/
+
+
+                  if (result && result[0].length <= this.textContent.length){
+
+                      let position = this.textContent.search(languageConst);
+                      console.log(position);
+
+                      if (position > 0) {
+                          this.splitText(position);
+                          newText.appendChild = this.parentElement.firstChild;
+                          //console.log(newNode);
+                      }
+
+                  newText.appendChild(newSpan);
+                  //this.parentElement.appendChild(newNode);
+
+
+                   };
+
+                });
+        };
+
+
+    </script>
+
+
+</head>
+
+<div>
+    <h3>
+        Example
+    </h3>
+</div>
+
+<!----Russian + English------>
+<div>
+
+    <p>ALL HAPPY FAMILIES resemble one another, but each unhappy family is unhappy in its own way.</p>
+<p>Все смешалось в доме Oblonsky.</p>
+<p>The wife had discovered an intrigue between her husband and their former French governess, and declared that she would not continue to live under the same roof with him.</p>
+<p>Положение это продолжалось уже третий день и мучительно чувствовалось и самими супругами, и всеми членами family, и домочадцами.</p>
+<p>They all felt that there was no sense in their living together, and that any group of людей who had met together by chance at an inn would have had more in common than they.</p>
+<p>Жена не выходила из своих комнат, мужа третий день не было дома. Children бегали по всему дому, как потерянные; англичанка поссорилась с экономкой и написала note приятельнице, прося приискать ей новое место; повар ушел еще вчера со двора, во время dinner; черная кухарка и кучер просили расчета.</p>
+<p>On the third day after his quarrel with his wife, Prince Stephen Arkadyevich Облонских – Steve, as he was called in his set in Society – woke up at his usual time, eight o'clock, not in his жена bedroom but on the morocco leather-covered sofa in his study.</p>
+<p>Он повернул свое полное, выхоленное тело на пружинах дивана, как бы желая опять sleep надолго, с другой стороны крепко обнял подушку и прижался к ней щекой; но вдруг вскочил, сел на диван и открыл глаза.</p>
+<p>Да, да, как это было? -- think он, вспоминая сон. -- Yes,</p>
+
+</div>
+
+<!----Greek + Hebrew------>
+<div>
+    <p>פרק 1 כיצד הובא קנדיד בטירה מפוארת וכיצד הוא מונע משם</p>
+    <p>Ζούσε στη Βεστφαλία, στον πύργο του κυρίου βαρώνου Τούντερ-τεν- τρονκ, ένας νέος, που η φύση τούχε δώσει το μαλακώτερο χαρακτήρα.</p>
+    <p>פניו היו המדד האמיתי של מוחו.</p>
+    <p>היה לו שיפוט מוצק שהצטרף לפשטות третий день  הכי לא מושפעת; ומכאן, אני מניח, היה שמו של קנדיד.</p>
+    <p>Οι παλιοί υπηρέτες του σπιτιού είχαν την υποψία, πως ήτανε γυιός της לטירה του κυρίου βαρώνου κ' ενός τιμίου ευπατρίδη από τα περίχωρα, που η δεσποινίς αυτή δε δέχτηκε ποτές να τον παντρευτή, γιατί, δε μπορούσε να δείξει περισσότερες από εβδομήντα μια γεννιές, ενώ το υπόλοιπο του γεννεαλογικού του δένδρου χανότανε μέσα στο αίσχος του χρόνου.</p>
+    <p>הברון היה אחד הלורדים החזקים ביותר בווסטפליה, שכן לטירה שלו לא  αδελφής   היה רק שער, אלא אפילו חלונות, והאולם הגדול שלו היה תלוי בשטיח.</p>
+    <p>Όλα τα φυλακόσκυλλά τους They all felt  τα μεταχειριζότανε σε ώρα ανάγκης, για κυνήγι. Οι σταυλίτες του ήσαν και κυνηγοί του.</p>
+    <p>הוא כונה על ידי כל אנשיו אדו והוא מעולם לא סיפר סיפור אבל כולם צחקו עליו.</p>
+
+</div>
+
+<div>
+    <p class="cyr">
+        Cyrrilic
+    </p>
+    <p class="lat">
+        Latin
+    </p>
+    <p class="gre">
+        Greek
+    </p>
+    <p class="heb">
+        Hebrew
+    </p>
+</div>
+</body>
+</html>
