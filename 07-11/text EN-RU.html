@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Multiligual selection</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tooltip.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/nodeselection.js"></script>
+</head>
+<body>
+<div>
+    <h3>
+        Example
+    </h3>
+</div>
+
+<!----Russian + English------>
+<div>
+    <p>Описание</p>
+    <p>textContent возвращает null, если узел является документом, типом документа, или его описанием. Для получения всего текста и CDATA-данных во всём документе можно использовать document.documentElement.textContent.</p>
+    <p>Если узел является CDATA, комментарием, инструкцией, или текстовым элементом, textContent возвращает текст внутри узла в виде строки (т.н. nodeValue).</p>
+    <p>Для узлов других типов textContent возвращает конкатенацию свойств textContent всех дочерних узлов, исключая комментарии и строки кода. Если узел не имеет дочерних узлов, будет возвращена пустая строка.</p>
+    <p>Установка данного значения удаляет все дочерние узлы и заменяет их единичным текстовым узлом с указанным значением.</p>
+    <p>Setting textContent on a node removes all of the node's children and replaces them with a single text node with the given string value.</p>
+</div>
+
+<div>
+    <button class="cyr" id="rusButton">
+        Русский
+    </button>
+    <button class="lat" id="engButton">
+        English
+    </button>
+
+</div>
+</body>
+</html>

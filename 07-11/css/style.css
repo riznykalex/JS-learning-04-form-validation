@@ -1,0 +1,30 @@
+body{
+    background: #e9e9ea;
+}
+h3{
+    background: #4e4e4e;
+    color: white;
+    min-height: 60px;
+    font: 40px Roboto, sans-serif;
+    white-space: nowrap;
+    padding-left: 20px;
+    position: relative;
+    margin: 0;
+
+}
+p {
+    font-family: sans-serif;
+    font-weight: bold;
+
+}
+div{
+    margin: 10px;
+    width: 700px
+}
+
+.cyr{
+    color: #ab0eab;
+}
+.lat{
+    color: #14a414;
+}
